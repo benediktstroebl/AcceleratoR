@@ -9,5 +9,10 @@ root_url <- "https://newsapi.org/v2/everything?q="
 politican_name <- "Karl%20Lauterbach"
 
 deu_politicians <- get_core(legislature = "deu")
+deu_political <- get_political(legislature = "deu")
 
-write.csv(deu_politicians,"data/deu_politicians.csv", row.names = FALSE)
+
+deu_political %>%
+  filter(session == max(session)) %>%
+  inner_join(deu_politicians, by = "pageid") %>%
+  write.csv("data/deu_politicians.csv", row.names = FALSE)
