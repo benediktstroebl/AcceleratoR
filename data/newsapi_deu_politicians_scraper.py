@@ -44,4 +44,4 @@ df_deu_politicians_articles = pd.DataFrame.from_dict(deu_politicians_articles)
 # append it to the general output df
 df_deu_politicians_articles = df_articles.append(df_deu_politicians_articles, ignore_index=True, sort=False)
 print(df_deu_politicians_articles.head())
-df_deu_politicians_articles.to_csv('df_deu_politicians_articles.csv', index=True)
+df_deu_politicians_articles.to_csv('df_deu_politicians_articles.csv', index=True, encoding="utf-8-sig")
