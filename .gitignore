@@ -37,3 +37,10 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Project file
+AcceleratoR.Rproj
+
+# images of politicians
+data/politicians_images/*.jpg
+
