@@ -2,26 +2,20 @@ from newsapi import NewsApiClient
 import pandas as pd
 
 # Init
-benedikt_key = '07288a2d35394938b113ad3cf504d9cd'
-newsapi = NewsApiClient(api_key=benedikt_key)
+api_key = '07288a2d35394938b113ad3cf504d9cd'
+newsapi = NewsApiClient(api_key=api_key)
 
-deu_politicians = pd.read_csv("data/deu_politicians.csv", encoding="latin-1")
+deu_politicians = pd.read_csv("../data/deu_politicians.csv", encoding="latin-1")
 print(deu_politicians)
 
-deu_politicians_articles = {}
-deu_politicians_articles['politician'] = []
-deu_politicians_articles['source'] = []
-deu_politicians_articles['title'] = []
-deu_politicians_articles['author'] = []
-deu_politicians_articles['description'] = []
-deu_politicians_articles['content'] = []
-deu_politicians_articles['url'] = []
-deu_politicians_articles['url_image'] = []
-deu_politicians_articles['date_published'] = []
+# initialize dict with keys in list
+key_dict = {"politician", "source", "title", "author", "description", "content", "url", "url_image", "date_published"}
+deu_politicians_articles = dict([(key, []) for key in key_dict])
 
 # create empty dataframe for filling unprocessed parsing data in
 df_articles = pd.DataFrame(
-    columns=['politician','source', 'title', 'author', 'description', 'content', 'url', 'urlToImage', 'publishedAt'])
+    columns=['politician', 'source', 'title', 'author', 'description', 'content', 'url', 'urlToImage', 'publishedAt'])
+
 # iterate over rows with iterrows()
 # TODO: Remove head()
 for index, row in deu_politicians.head(5).iterrows():
@@ -44,4 +38,4 @@ df_deu_politicians_articles = pd.DataFrame.from_dict(deu_politicians_articles)
 # append it to the general output df
 df_deu_politicians_articles = df_articles.append(df_deu_politicians_articles, ignore_index=True, sort=False)
 print(df_deu_politicians_articles.head())
-df_deu_politicians_articles.to_csv('df_deu_politicians_articles.csv', index=True)
+df_deu_politicians_articles.to_csv('df_deu_politicians_articles.csv', index=True, encoding="utf-8-sig")
