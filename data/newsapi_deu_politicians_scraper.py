@@ -17,8 +17,8 @@ df_articles = pd.DataFrame(
     columns=['politician', 'source', 'title', 'author', 'description', 'content', 'url', 'urlToImage', 'publishedAt'])
 
 # iterate over rows with iterrows()
-# TODO: Remove head()
-for index, row in deu_politicians.head(5).iterrows():
+# TODO: Remove head() --> we are only allowed to make 100 requests every 24h
+for index, row in deu_politicians.head(50).iterrows():
     response = newsapi.get_everything(q=row["name"], sort_by="relevancy")["articles"]
 
     for article in response:

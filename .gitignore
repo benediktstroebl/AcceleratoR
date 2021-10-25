@@ -42,5 +42,5 @@ vignettes/*.pdf
 AcceleratoR.Rproj
 
 # images of politicians
-data/politicians_images/*.jpg
+/data/politicians_images/*.jpg
 
